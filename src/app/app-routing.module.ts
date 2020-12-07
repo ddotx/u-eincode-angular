@@ -1,7 +1,15 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 
-const routes: Routes = [];
+import { LoginComponent } from './auth/login/login.component';
+import { NgModule } from '@angular/core';
+import { RegisterComponent } from './auth/register/register.component';
+import {GuestGuard} from "./auth/shared/auth.guard";
+
+const routes: Routes = [
+  {path: '', redirectTo: '/rentals', pathMatch: 'full'},
+  {path: 'login', component: LoginComponent, canActivate: [GuestGuard]},
+  {path: 'register', component: RegisterComponent, canActivate: [GuestGuard]},
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
